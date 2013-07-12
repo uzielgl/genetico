@@ -24,6 +24,8 @@ class Poblacion:
 		
 		for i in range( len( self.individuos ) ):
 			random.shuffle( individuos )
+			#print "==========ordenados en shuffle============"
+			#print individuos
 			padres.append( min( individuos[0:2] ) )
 		
 		return padres

@@ -53,7 +53,7 @@ for i in range( generaciones ):
 	hijos = p.cruzar( padres )
 	#Los mutamos de acuerdo al porcentaje de mutación
 	for i in hijos:
-		if random.random < p_mutacion:
+		if random.random() < p_mutacion:
 			i.mutar()
 	#actualizamos las aptitudes
 	for i in hijos: i.updAptitud()

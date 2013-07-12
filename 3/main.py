@@ -18,7 +18,7 @@ else:
 	tamanio_poblacion = 4
 	generaciones = 100000
 	p_cruza = 1
-	p_mutacion = 0.51
+	p_mutacion = 0.5
 
 
 Poblacion.porcentajeDeCruza = p_cruza
@@ -42,24 +42,34 @@ p = Poblacion( tamanio_poblacion )
 for i in range( generaciones ):
 	print "Generación " + str( i )
 	
+	#print "=====individuos originales====="
+	#print p.individuos
+	
+	
 	#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
 	mejor_de_poblacion_actual = min( p.individuos )
 	
 	
 	#obtenemos los padres
 	padres = p.getPadres()
+	#print "padres"
+	#print  padres
 	
 	#cruzamos esos padres
 	hijos = p.cruzar( padres )
+	
 	#Los mutamos de acuerdo al porcentaje de mutación
-	for i in hijos:
-		if random.random < p_mutacion:
-			i.mutar()
+	for j in hijos:
+		if random.random() < p_mutacion:
+			j.mutar()
 	#actualizamos las aptitudes
-	for i in hijos: i.updAptitud()
+	for k in hijos: k.updAptitud()
+	
+	#print "hijos"
+	#print  hijos
 	
 	#Ordenamos los hijos
-	hijos.sort()
+	random.shuffle( hijos )
 	
 	#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
 	p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]
@@ -68,8 +78,11 @@ for i in range( generaciones ):
 	mejor = min( p.individuos )
 	print mejor
 	
+	#print ""
+	#if i == 8:
+	#	sys.exit()
 
-
+		
 
 
 

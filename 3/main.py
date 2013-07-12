@@ -15,10 +15,10 @@ if len( sys.argv ) > 1:
 	p_cruza =  float( sys.argv[3] )
 	p_mutacion =  float( sys.argv[4] ) 
 else:
-	tamanio_poblacion = 100
+	tamanio_poblacion = 4
 	generaciones = 100000
-	p_cruza = 0.8
-	p_mutacion = 0.8
+	p_cruza = 1
+	p_mutacion = 0.51
 
 
 Poblacion.porcentajeDeCruza = p_cruza

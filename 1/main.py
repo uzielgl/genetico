@@ -4,11 +4,16 @@ from poblacion import *
 import sys
 
 
-tamanio_poblacion = 200
+tamanio_poblacion = 40
 generaciones = 1000
 p_cruza = 1
-p_mutacion = .5 
+p_mutacion = .5
 
+# tamanio_poblacion = 40
+# generaciones = 1000
+# p_cruza = 1
+# p_mutacion = .5  
+#.188
 
 
 #si viene con argumentos sobre escribimos los de default
@@ -33,7 +38,7 @@ print ""
 #Individuo.p_cruza = 0.5
 
 import random
-random.seed(123123123)
+#random.seed(123123123)
 
 Poblacion.porcentajeDeMutacion = p_mutacion
 Poblacion.porcentajeDeCruza = p_cruza

@@ -7,7 +7,7 @@ import sys
 import copy
 
 #Ponemos semilla
-#random.seed(123456789)
+random.seed(123456789)
 
 #Obtenemos los argumentos
 if len( sys.argv ) > 1:
@@ -16,10 +16,28 @@ if len( sys.argv ) > 1:
 	p_cruza =  float( sys.argv[3] )
 	p_mutacion =  float( sys.argv[4] ) 
 else:
-	tamanio_poblacion = 100
+	tamanio_poblacion = 2
 	generaciones = 100000
-	p_cruza = 0.8
-	p_mutacion = 0.8
+	p_cruza = .5
+	p_mutacion = 1
+	
+# 	tamanio_poblacion = 2
+# 	generaciones = 100000
+# 	p_cruza = .5
+# 	p_mutacion = 1
+#	0.588
+	
+# 	tamanio_poblacion = 2
+# 	generaciones = 100000
+# 	p_cruza = .5
+# 	p_mutacion = .5
+# 	1.268
+	
+# 	tamanio_poblacion = 2
+# 	generaciones = 100000
+# 	p_cruza = .8
+# 	p_mutacion = .5
+# 	1.536
 
 
 Poblacion.porcentajeDeCruza = p_cruza
@@ -60,7 +78,7 @@ for i in range( generaciones ):
 	for i in hijos: i.updAptitud()
 	
 	#Ordenamos los hijos
-	hijos.sort()
+	random.shuffle( hijos )
 	
 	#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
 	p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]

@@ -5,8 +5,8 @@ import math
 from poblacion import *
 
 class Individuo:
-	limiteSuperior = -5.12
-	limiteInferior = 5.12
+	limiteSuperior = 5.12
+	limiteInferior = -5.12
 	
 	def __init__(self, values=""):
 		""" Se le podrán pasar los values con los que inicializará, o dejarlo vació, y se crearán 

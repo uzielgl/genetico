@@ -50,7 +50,7 @@ class Individuo:
 		for i in self.values:
 			a_mostrar.append( round( i, 3) )
 		
-		return str( a_mostrar  ) + " f(x) = " +  str( self.aptitud )
+		return str( a_mostrar  ) + " f(x) = " +  str( round( self.aptitud, 3) )
 	
 	def __cmp__(self, other):
 		return self.aptitud - other.aptitud
@@ -64,7 +64,7 @@ class Individuo:
 		cadena_bits = ""
 		for i in self.values:
 			entero = (int) ( ( ( i - li ) * ( 2 ** t ) ) / ( ls - li ) )
-			print entero
+			#print entero
 			cadena_bits += "{0:b}".format(entero).zfill(14)
 			
 		self.cadenaBits = cadena_bits

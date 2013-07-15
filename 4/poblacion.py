@@ -23,7 +23,7 @@ class Poblacion:
 		padres = []
 		
 		for i in range( len( self.individuos ) ):
-			random.shuffle( individuos )
+			random.shuffle( individuos ) 
 			padres.append( min( individuos[0:2] ) )
 		
 		return padres

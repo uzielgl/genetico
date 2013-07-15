@@ -1,14 +1,50 @@
 #!C:\cygwin\bin\python
 from individuo import *
 from poblacion import *
+import copy
 import sys
 
 
-tamanio_poblacion = 100
-generaciones = 10000
-p_cruza = 0.8
-p_mutacion = 0.8
+tamanio_poblacion = 10 
+generaciones = 40000
+p_cruza = .5
+p_mutacion = 1  
 
+# tamanio_poblacion = 10
+# generaciones = 40000
+# p_cruza = .5
+# p_mutacion = 1
+# 0.377
+
+
+# tamanio_poblacion = 40
+# generaciones = 200000
+# p_cruza = 1
+# p_mutacion = 1
+# 2.383
+
+# tamanio_poblacion = 2
+# generaciones = 1000000
+# p_cruza = .5
+# p_mutacion = 1
+
+# tamanio_poblacion = 60
+# generaciones = 6667
+# p_cruza = 1
+# p_mutacion = .5
+# 1.507
+
+# tamanio_poblacion = 60
+# generaciones = 4000
+# p_cruza = 1
+# p_mutacion = 1
+# 3.84
+
+# tamanio_poblacion = 50
+# generaciones = 4000
+# p_cruza = 1
+# p_mutacion = 1
+# 4.804
 
 
 #si viene con argumentos sobre escribimos los de default
@@ -33,7 +69,7 @@ print ""
 #Individuo.p_cruza = 0.5
 
 import random
-#random.seed(123123123)
+#random.seed(123456789)
 
 Poblacion.porcentajeDeMutacion = p_mutacion
 Poblacion.porcentajeDeCruza = p_cruza
@@ -54,7 +90,7 @@ for i in range( generaciones ):
 		i.setValues()
 		i.setAptitud()
 	
-	mejor = min( p.individuos ) #Obtenemos el mejor individuo
+	mejor = copy.deepcopy(  min( p.individuos ) ) #Obtenemos el mejor individuo
 	
 	hijos_mutados.remove( max( hijos_mutados ) ) # Eliminamos la peor solucion
 	

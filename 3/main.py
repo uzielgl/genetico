@@ -3,6 +3,7 @@
 from individuo import *
 from poblacion import *
 import random
+import copy
 import sys
 
 #Ponemos semilla
@@ -17,7 +18,7 @@ if len( sys.argv ) > 1:
 else:
 	tamanio_poblacion = 6
 	generaciones = 66667
-	p_cruza = .8
+	p_cruza = 1
 	p_mutacion = .5
 
 
@@ -47,9 +48,8 @@ for i in range( generaciones ):
 	
 	
 	#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
-	mejor_de_poblacion_actual = min( p.individuos )
-	if id( mejor_de_poblacion_actual  ) == id( min( p.individuos ).copy() ):
-		print "es el mismo"
+	mejor_de_poblacion_actual = copy.deepcopy(  min( p.individuos ) )
+
 	
 	#obtenemos los padres
 	padres = p.getPadres()
@@ -72,9 +72,6 @@ for i in range( generaciones ):
 	#Ordenamos los hijos
 	random.shuffle( hijos )
 	
-	print "hijos"
-	print hijos
-	
 	#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
 	p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]
 	
@@ -82,9 +79,7 @@ for i in range( generaciones ):
 	mejor = min( p.individuos )
 	print mejor
 	
-	#print ""
-	if i == 9:
-		sys.exit()
+	
 
 		
 

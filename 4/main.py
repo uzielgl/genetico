@@ -4,6 +4,7 @@ from individuo import *
 from poblacion import *
 import random
 import sys
+import copy
 
 #Ponemos semilla
 #random.seed(123456789)
@@ -43,7 +44,7 @@ for i in range( generaciones ):
 	print "Generación " + str( i )
 	
 	#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
-	mejor_de_poblacion_actual = min( p.individuos )
+	mejor_de_poblacion_actual = copy.deepcopy( min( p.individuos ) )
 	
 	
 	#obtenemos los padres

@@ -45,7 +45,7 @@ f.close()
 
 mejores_soluciones = []
 
-for j in range(1, 3):
+for j in range(1, 31):
 	f = open("corridas.txt", "a")
 	
 	

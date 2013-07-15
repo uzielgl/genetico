@@ -6,7 +6,7 @@ import random
 import sys
 
 #Ponemos semilla
-#random.seed(123456789)
+random.seed(123456789)
 
 #Obtenemos los argumentos
 if len( sys.argv ) > 1:
@@ -15,10 +15,10 @@ if len( sys.argv ) > 1:
 	p_cruza =  float( sys.argv[3] )
 	p_mutacion =  float( sys.argv[4] ) 
 else:
-	tamanio_poblacion = 4
-	generaciones = 100000
-	p_cruza = 1
-	p_mutacion = 0.5
+	tamanio_poblacion = 6
+	generaciones = 66667
+	p_cruza = .8
+	p_mutacion = .5
 
 
 Poblacion.porcentajeDeCruza = p_cruza
@@ -48,7 +48,8 @@ for i in range( generaciones ):
 	
 	#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
 	mejor_de_poblacion_actual = min( p.individuos )
-	
+	if id( mejor_de_poblacion_actual  ) == id( min( p.individuos ).copy() ):
+		print "es el mismo"
 	
 	#obtenemos los padres
 	padres = p.getPadres()
@@ -71,6 +72,9 @@ for i in range( generaciones ):
 	#Ordenamos los hijos
 	random.shuffle( hijos )
 	
+	print "hijos"
+	print hijos
+	
 	#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
 	p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]
 	
@@ -79,8 +83,8 @@ for i in range( generaciones ):
 	print mejor
 	
 	#print ""
-	#if i == 8:
-	#	sys.exit()
+	if i == 9:
+		sys.exit()
 
 		
 

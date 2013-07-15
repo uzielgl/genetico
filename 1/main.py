@@ -5,7 +5,7 @@ import sys
 
 
 tamanio_poblacion = 40
-generaciones = 1000
+generaciones = 10000
 p_cruza = 1
 p_mutacion = .5
 

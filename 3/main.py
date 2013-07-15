@@ -7,7 +7,7 @@ import copy
 import sys
 
 #Ponemos semilla
-random.seed(123456789)
+#random.seed(123456789)
 
 #Obtenemos los argumentos
 if len( sys.argv ) > 1:
@@ -26,61 +26,83 @@ Poblacion.porcentajeDeCruza = p_cruza
 Poblacion.porcentajeDeMutacion = p_mutacion
 	
 	
-#Imprimimos información 
-print "============================================="
-print "Problema 1"
-print "Tamanio de la poblacion: " + str( tamanio_poblacion )
-print "Generaciones: " + str( generaciones )
-print "P. Cruza: " + str( p_cruza )
-print "P. Mutacion: " + str(p_mutacion) 
-print "============================================="
-print ""
+f = open("corridas.txt", "w")
+f.close()
+
+mejores_soluciones = []
+
+for j in range(1, 31):
+	f = open("corridas.txt", "a")
+	f.write("Corrida " + str(j) + "\n")
+	
+	print "============================================="
+	print "Problema 1"
+	print "Tamanio de la poblacion: " + str( tamanio_poblacion )
+	print "Generaciones: " + str( generaciones )
+	print "P. Cruza: " + str( p_cruza )
+	print "P. Mutacion: " + str(p_mutacion) 
+	print "============================================="
+	print ""
+	
+	#Generamos la población inicial
+	p = Poblacion( tamanio_poblacion )
+	
+	for i in range( generaciones ):
+		print "Generación " + str( i )
+		
+		
+		f.write( "generacion: " + str( i ) + "\n" )
+		#print "=====individuos originales====="
+		#print p.individuos
+		
+		
+		#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
+		mejor_de_poblacion_actual = copy.deepcopy(  min( p.individuos ) )
+	
+		
+		#obtenemos los padres
+		padres = p.getPadres()
+		#print "padres"
+		#print  padres
+		
+		#cruzamos esos padres
+		hijos = p.cruzar( padres )
+		
+		#Los mutamos de acuerdo al porcentaje de mutación
+		for j in hijos:
+			if random.random() < p_mutacion:
+				j.mutar()
+		#actualizamos las aptitudes
+		for k in hijos: k.updAptitud()
+		
+		#print "hijos"
+		#print  hijos
+		
+		#Ordenamos los hijos
+		random.shuffle( hijos )
+		
+		#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
+		p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]
+		
+		#obtenemos el mejor y lo mostramos
+		mejor = min( p.individuos )
+		print mejor
+		f.write( mejor.__str__() + "\n" )
+		
+		if  i == generaciones - 1 :
+			mejores_soluciones.append( mejor )
+	f.close()
+		
+		
+
+f = open("corridas.txt", "a")
+f.write( "============= Mejores corridas ============== \n")
+for inx, i in enumerate( mejores_soluciones ):
+	f.write( "Corrida " + str( inx + 1 ) + ":" + i.__str__() + "\n" ) 
 
 
-#Generamos la población inicial
-p = Poblacion( tamanio_poblacion )
 
-for i in range( generaciones ):
-	print "Generación " + str( i )
-	
-	#print "=====individuos originales====="
-	#print p.individuos
-	
-	
-	#De la población actual, obtenemos la mejor solución, que se usará en el reemplazo con elitismo
-	mejor_de_poblacion_actual = copy.deepcopy(  min( p.individuos ) )
-
-	
-	#obtenemos los padres
-	padres = p.getPadres()
-	#print "padres"
-	#print  padres
-	
-	#cruzamos esos padres
-	hijos = p.cruzar( padres )
-	
-	#Los mutamos de acuerdo al porcentaje de mutación
-	for j in hijos:
-		if random.random() < p_mutacion:
-			j.mutar()
-	#actualizamos las aptitudes
-	for k in hijos: k.updAptitud()
-	
-	#print "hijos"
-	#print  hijos
-	
-	#Ordenamos los hijos
-	random.shuffle( hijos )
-	
-	#hacemos la nueva población con el mejor de la población, y con los mejores de los hijos
-	p.individuos = [ mejor_de_poblacion_actual ] + hijos[: len(hijos)-1 ]
-	
-	#obtenemos el mejor y lo mostramos
-	mejor = min( p.individuos )
-	print mejor
-	
-	
-
+print Poblacion.evaluaciones
 		
 
 

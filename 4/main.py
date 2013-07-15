@@ -7,7 +7,7 @@ import sys
 import copy
 
 #Ponemos semilla
-random.seed(123456789)
+#random.seed(123456789)
 
 #Obtenemos los argumentos
 if len( sys.argv ) > 1:
@@ -17,7 +17,7 @@ if len( sys.argv ) > 1:
 	p_mutacion =  float( sys.argv[4] ) 
 else:
 	tamanio_poblacion = 2
-	generaciones = 100000
+	generaciones = 200000
 	p_cruza = .5
 	p_mutacion = 1
 	
